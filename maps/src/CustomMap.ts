@@ -1,3 +1,6 @@
+import { User } from './User'
+import { Company } from './Company'
+
 export class CustomMap { // public as default modifier doesn't need to be initiated
   private googleMap: google.maps.Map; // But we want it private
 
@@ -9,5 +12,19 @@ export class CustomMap { // public as default modifier doesn't need to be initia
         lng: 0
       }
     })
+  }
+
+  addUserMarker(user: User): void {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: user.location.lat,
+        lng: user.location.lng
+      }
+    });
+  }
+
+  addCompanyMarker(company: Company): void {
+
   }
 }
