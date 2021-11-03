@@ -25,6 +25,12 @@ export class CustomMap { // public as default modifier doesn't need to be initia
   }
 
   addCompanyMarker(company: Company): void {
-
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: company.location.lat,
+        lng: company.location.lng
+      }
+    });
   }
 }
