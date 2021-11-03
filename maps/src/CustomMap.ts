@@ -1,5 +1,15 @@
-import { User } from './User'
-import { Company } from './Company'
+// import { User } from './User'
+// import { Company } from './Company'
+
+// Instruction to every other class
+// on how they can be an argument to 'addMarker'
+interface Mappable {
+  location: {
+    lat: number;
+    lng: number;
+  };
+  markerContent(): string;
+}
 
 export class CustomMap { // public as default modifier doesn't need to be initiated
   private googleMap: google.maps.Map; // But we want it private
@@ -14,23 +24,41 @@ export class CustomMap { // public as default modifier doesn't need to be initia
     })
   }
 
-  addUserMarker(user: User): void {
-    new google.maps.Marker({
+  addMarker(mappable: Mappable): void {
+    const marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
-        lat: user.location.lat,
-        lng: user.location.lng
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
       }
     });
+
+    marker.addListener('click', () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: mappable.markerContent()
+      });
+
+      infoWindow.open(this.googleMap, marker);
+    });    
   }
 
-  addCompanyMarker(company: Company): void {
-    new google.maps.Marker({
-      map: this.googleMap,
-      position: {
-        lat: company.location.lat,
-        lng: company.location.lng
-      }
-    });
-  }
+  // addUserMarker(user: User): void {
+  //   new google.maps.Marker({
+  //     map: this.googleMap,
+  //     position: {
+  //       lat: user.location.lat,
+  //       lng: user.location.lng
+  //     }
+  //   });
+  // }
+
+  // addCompanyMarker(company: Company): void {
+  //   new google.maps.Marker({
+  //     map: this.googleMap,
+  //     position: {
+  //       lat: company.location.lat,
+  //       lng: company.location.lng
+  //     }
+  //   });
+  // }
 }
