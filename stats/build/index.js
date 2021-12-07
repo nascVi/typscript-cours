@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var CsvFileReader_1 = require("./CsvFileReader");
+// import { dateStringToDate } from './utils'; There we'd had import
 var reader = new CsvFileReader_1.CsvFileReader('ranking.csv');
 reader.read();
 console.log(reader.data);
@@ -28,7 +29,8 @@ for (var _i = 0, _a = reader.data; _i < _a.length; _i++) {
     if (match[4] === 'Chicago Bulls' && match[10] === MatchResult.HomeWin) {
         chicagoBullsWins++;
     }
-    else if (match[2] === 'Chicago Bulls' && match[10] === MatchResult.VisitorWin) {
+    else if (match[2] === 'Chicago Bulls' &&
+        match[10] === MatchResult.VisitorWin) {
         chicagoBullsWins++;
     }
 }

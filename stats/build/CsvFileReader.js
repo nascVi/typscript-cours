@@ -13,11 +13,26 @@ var CsvFileReader = /** @class */ (function () {
     CsvFileReader.prototype.read = function () {
         this.data = fs_1.default
             .readFileSync(this.filename, {
-            encoding: 'utf-8'
+            encoding: 'utf-8',
         })
             .split('\n')
             .map(function (row) {
             return row.split(',');
+        })
+            .map(function (row) {
+            return [
+                row[0],
+                row[1],
+                row[2],
+                row[3],
+                row[4],
+                row[5],
+                row[6],
+                row[7],
+                row[8],
+                row[9],
+                row[10],
+            ];
         });
     };
     return CsvFileReader;
