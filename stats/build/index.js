@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var CsvFileReader_1 = require("./CsvFileReader");
 var reader = new CsvFileReader_1.CsvFileReader('ranking.csv');
 reader.read();
+console.log(reader.data);
 // const matches = fs
 // .readFileSync(basketball.csv, {
 //   encoding: 'utf-8'
@@ -13,13 +14,22 @@ reader.read();
 //     return row.split(',');
 //   }
 // );
-// // enum - enumeration
-// enum MatchResult {
-// HomeWin = 'H',
-// AwayWin = 'A',
-// Draw = ''
-// }
-// let BullsWins = 0;
-// for(let match of reader.data) {
-//   if(matche[1] === 'Bulls' && match[5] === MatchResult)
-// }
+// enum - enumeration
+var MatchResult;
+(function (MatchResult) {
+    // const MatchResult = {
+    MatchResult["HomeWin"] = "H";
+    MatchResult["VisitorWin"] = "V";
+    MatchResult["Canceled"] = "C";
+})(MatchResult || (MatchResult = {}));
+var chicagoBullsWins = 0;
+for (var _i = 0, _a = reader.data; _i < _a.length; _i++) {
+    var match = _a[_i];
+    if (match[4] === 'Chicago Bulls' && match[10] === MatchResult.HomeWin) {
+        chicagoBullsWins++;
+    }
+    else if (match[2] === 'Chicago Bulls' && match[10] === MatchResult.VisitorWin) {
+        chicagoBullsWins++;
+    }
+}
+console.log("The Chicago Bulls win: " + chicagoBullsWins + " games, this season from nowon.");
