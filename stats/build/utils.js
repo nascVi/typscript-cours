@@ -1,9 +1,12 @@
 "use strict";
 // The format of the date would be only numbers and slashes, then the file here'd been necessary.
-// export const dateStringToDate = (dateString: string): Date => {
-//   // 24/12/2021
-//   const dateParts = dateString.split('/').map((value: string): number => {
-//     return parseInt(value);
-//   }); // {'24','12','2021'}
-//   return new Date(dateParts[2]);
-// };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.dateStringToDate = void 0;
+var dateStringToDate = function (dateString) {
+    // Tue Oct 19 2021
+    var dateParts = dateString.split(' ').map(function (value) {
+        return value;
+    }); // {'24','12','2021'}
+    return new Date(dateParts[3]);
+};
+exports.dateStringToDate = dateStringToDate;

@@ -1,9 +1,10 @@
 import { CsvFileReader } from './CsvFileReader';
+import { MatchResult } from './MatchResult';
 // import { dateStringToDate } from './utils'; There we'd had import
 
 const reader = new CsvFileReader('ranking.csv');
 reader.read();
-console.log(reader.data);
+const dateOffFirstMatch = reader.data[0][0];
 
 // const matches = fs
 // .readFileSync(basketball.csv, {
@@ -15,14 +16,14 @@ console.log(reader.data);
 //     return row.split(',');
 //   }
 // );
-
-// enum - enumeration
-enum MatchResult {
-  // const MatchResult = {
-  HomeWin = 'H',
-  VisitorWin = 'V',
-  Canceled = 'C',
-}
+//
+// // enum - enumeration
+// enum MatchResult {
+//   // const MatchResult = {
+//   HomeWin = 'H',
+//   VisitorWin = 'V',
+//   Canceled = 'C',
+// }
 
 let chicagoBullsWins = 0;
 
@@ -37,6 +38,7 @@ for (let match of reader.data) {
   }
 }
 
+console.log(reader.data);
 console.log(
   `The Chicago Bulls win: ${chicagoBullsWins} games, this season from nowon.`
 );
